@@ -1,0 +1,51 @@
+Product Listing - QA Testing & Bug Fixing
+
+Implementation
+- Created a new Angular 21 application using standalone components.
+- Added the required product model, product service, cart service, and product-list component.
+- Preserved the assignment product data:
+  Laptop - $999 - Electronics - Stock: 5
+  Phone - $699 - Electronics - Stock: 0
+  Desk - $299 - Furniture - Stock: 10
+  Chair - $199 - Furniture - Stock: 3
+- Added locally stored SVG illustrations so product images do not depend on external image hosts.
+- Added a responsive product grid, category dropdown, filtered product count, stock labels, disabled out-of-stock action, cart badge, and accessible success notification.
+
+Four assignment bugs addressed
+1. Cart count not showing: CartService initializes its cart stream to an empty cart and emits the count (initially 0) as cart contents change.
+2. Category filter not working: ProductService filters its existing product data by the selected category; All Products, Electronics, and Furniture show the correct products.
+3. No feedback when adding to cart: Successful additions show a live success notification. CartService rejects products with no stock, and the Phone button is disabled.
+4. Product count not updating: The displayed count derives from the filtered products observable and updates automatically when the category changes.
+
+Files created
+- src/app/product.model.ts
+- src/app/product.service.ts
+- src/app/cart.service.ts
+- src/app/product-list/product-list.component.ts
+- src/app/product-list/product-list.component.html
+- src/app/product-list/product-list.component.css
+- public/images/laptop.svg
+- public/images/phone.svg
+- public/images/desk.svg
+- public/images/chair.svg
+- FIXES_SUMMARY.txt
+
+Files updated
+- src/app/app.ts
+- src/app/app.css
+- src/styles.css
+- src/index.html
+- angular.json
+- README.md
+
+Verification status
+- Angular 21 production build (`npm run build`): passed without errors or warnings.
+- Runtime/browser interaction checks: passed.
+  - App loads with four products and a cart count of 0.
+  - Electronics shows Laptop and Phone; filtered count is 2.
+  - Furniture shows Desk and Chair; filtered count is 2.
+  - All Products restores all four products.
+  - All four local product images load successfully.
+  - Phone's Add to Cart button is disabled.
+  - Adding Laptop displays a success notification and updates the cart count to 1.
+  - No browser console errors were observed during the checks.
